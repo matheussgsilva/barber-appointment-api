@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-
-  resources :services
-  #devise_for :users
   
+  scope defaults: { format: :json } do
+    
+    resources :sessions, only: [:create]
+    resources :users, only: [:create]
+    resources :services, only: [:index, :show, :create, :update, :delete]
+  end
 end
