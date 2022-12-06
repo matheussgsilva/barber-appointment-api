@@ -9,7 +9,7 @@ class ServicesController < ApplicationController
   end
 
   def create
-    service = services.new(services_params)
+    service = Service.new(services_params)
 
     if service.save
       render json: {}, status: 201
@@ -18,10 +18,29 @@ class ServicesController < ApplicationController
     end
   end
 
+  def update
+    service = Service.find(params[:id])
+    service.attributes = services_params
+    if service.save
+      render json: {}, status: 200
+    else
+      render json: { error: service.errors.full_messages.first }, status: 422
+    end
+  end
+
+  def destroy
+    service = Service.find(params[:id])
+    if service.destroy
+      render json: {}, status: 200
+    else
+      render json: { error: service.errors.full_messages.first }, status: 422
+    end
+  end
+
   private
 
   def services_params
-    params.permit( :name, :price, :duration )
+    params.permit(:name, :price, :duration)
   end
   
 end
