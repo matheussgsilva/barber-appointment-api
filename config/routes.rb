@@ -5,5 +5,6 @@ Rails.application.routes.draw do
     resources :sessions, only: [:create]
     resources :users, only: [:create]
     resources :services
+    resources :barbers
   end
 end
