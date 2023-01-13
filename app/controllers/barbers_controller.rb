@@ -40,7 +40,7 @@ class BarbersController < ApplicationController
   private
 
   def barbers_params
-    params.permit(:name, :service_id)
+    params.permit(:name, service_ids: [])
   end
   
 end
