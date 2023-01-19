@@ -6,5 +6,6 @@ Rails.application.routes.draw do
     resources :users, only: [:create]
     resources :services
     resources :barbers
+    resources :schedules
   end
 end
